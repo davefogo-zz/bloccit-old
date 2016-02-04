@@ -1,5 +1,17 @@
 require "random_data"
-# Create Posts
+# Create Posts\
+posts = Post.all
+
+Post.create!(
+  title: "Forest Burns in the City",
+  body: "At about 2pm EST the eastern mountains started to burn."
+  )
+  
+Comment.create!(
+  body: "First Comment",
+  post: posts.sample
+  )
+
 50.times do
   Post.create!(
     title:  RandomData.random_sentence,
