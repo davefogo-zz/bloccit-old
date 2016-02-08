@@ -12,7 +12,7 @@ RSpec.describe PostsController, type: :controller do
 
     it "assigns my_post to @posts" do
       get :index
-      expect(assigns(:posts)).to eq([my_post])
+      expect(assigns(:posts)).to eq(my_post)
     end
   end
 
@@ -50,8 +50,8 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe "POST create" do
-    it "increases the number of Post by 1" do
+  describe "POST #create" do
+    it "increases the number of Posts by 1" do
       expect{post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post,:count).by(1)
     end
 
