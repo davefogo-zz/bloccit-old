@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'random_data'
+
 RSpec.describe PostsController, type: :controller do
 
   let(:my_post) { Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
