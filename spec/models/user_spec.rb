@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe User, type: :model do
   let(:user) {User.create!(name: "Bloccit User", email: "user@bloccit.com", password_digest: "password")}
   #Shoulda tests for name
@@ -44,6 +45,13 @@ RSpec.describe User, type: :model do
     it "should be an invalid user due to incorrectly formatted email address" do
       expect(user_with_invalid_email_format).to_not be_valid
     end
+  end
 
+  describe "name format" do
+    let(:unformatted_user_name) {User.create!(name: "bloccit user", email: "user@bloccit.com", password_digest: "password")}
+
+    it "should format name correctly" do
+      expect(unformatted_user_name.name).to eq("Bloccit User")
+    end
   end
 end
