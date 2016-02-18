@@ -23,3 +23,25 @@
 .nav {
   margin-top: 5px;
 }
+
+.avatar {
+  margin: 10px;
+  display: inline-block;
+}
+
+.current_user {
+  position: absolute;
+  top: 30px;
+  right: 115px;
+  color: #2F79BA;
+  margin: 2px;
+  display: inline-block;
+}
+
+.sign_out {
+  position: absolute;
+  top: 45px;
+  right: 125px;
+  margin: 2px;
+  display: inline;
+}
