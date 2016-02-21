@@ -8,4 +8,6 @@ class Post < ActiveRecord::Base
   validates :topic, presence: true
 
   default_scope {order('created_at DESC')}
+  scope :ordered_by_title, -> {order('title DESC')}
+  scope :ordered_by_reverse_created_at, -> {order('created_at ASC')}
 end
