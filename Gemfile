@@ -17,6 +17,7 @@ source 'https://rubygems.org'
  group :development, :test do
    gem 'rspec-rails', '~> 3.0'
    gem 'shoulda'
+   gem 'nyan-cat-formatter'
  end
 
  # Use SCSS for stylesheets
