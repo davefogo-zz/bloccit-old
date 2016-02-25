@@ -40,7 +40,6 @@ class TopicsController < ApplicationController
       @topic.labels = Label.update_labels(params[:topic][:labels])
       redirect_to @topic, notice: "Topic was saved successfully."
       flash[:notice] = "Topic was updated."
-      redirect_to @topic
     else
       flash.now[:alert] = "Error saving topic. Please try again."
       render :edit

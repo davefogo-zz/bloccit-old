@@ -9,7 +9,14 @@
        <%= render partial: "labels/list", locals: { labels: @topic.labels } %>
        <br />
        <%= @topic.description %>
-     </p>
+    </p>
+    <div>
+      <h3> Topic Comments </h3>
+      <%= render @topic.comments %>
+    </div>
+
+    <%= render partial: 'comments/form', locals: {topic: @topic, comment: Comment.new} %>
+
     <% @topic.posts.each do |post| %>
     <div class="media">
       <div class="media-body">
