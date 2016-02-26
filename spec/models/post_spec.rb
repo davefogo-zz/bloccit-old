@@ -8,8 +8,9 @@ RSpec.describe Post, type: :model do
 
   it {is_expected.to have_many(:labelings)}
   it {is_expected.to have_many(:labels).through(:labelings)}
-
   it {is_expected.to have_many(:comments)}
+  it {is_expected.to have_many(:votes)}
+
   it {is_expected.to belong_to(:user)}
   it {is_expected.to belong_to(:topic)}
 
@@ -21,11 +22,42 @@ RSpec.describe Post, type: :model do
   it {is_expected.to validate_length_of(:body).is_at_least(20)}
 
     describe "attributes" do
+
       it "responds to title" do
         expect(post).to respond_to(:title)
       end
+
       it "responds to body" do
         expect(post).to respond_to(:body)
+      end
+    end
+
+    describe "voting" do
+
+      before do
+        3.times {post.votes.create!(value: 1)}
+        2.times {post.votes.create!(value: -1)}
+        @up_votes = post.votes.where(value: 1).count
+        @down_votes = post.votes.where(value: -1).count
+      end
+
+      describe "#up_votes" do
+
+        it "counts the number of votes with value = 1" do
+          expect(post.up_votes).to eq(@up_votes)
+        end
+      end
+
+      describe "down_votes" do
+        it "counts the number of votes with value = -1" do
+          expect(post.down_votes).to eq(@down_votes)
+        end
+      end
+
+      describe "points" do
+        it "returns the sum of all down and up votes" do
+          expect(post.points).to eq(@up_votes - @down_votes)
+        end
       end
     end
 end
