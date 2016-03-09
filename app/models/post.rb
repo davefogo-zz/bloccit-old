@@ -36,9 +36,7 @@ class Post < ActiveRecord::Base
   private
 
   def send_new_post_favorite
-    favorite = @user.favorites.where(post: @post).create
-    @post.user.favorites.each do |favorite|
-      FavoriteMailer.new_post(self, favorite.user).deliver_now
-    end
+    Favorite.create(post: self, user: self.user)
+    FavoriteMailer.new_post(self).deliver_now
   end
 end
