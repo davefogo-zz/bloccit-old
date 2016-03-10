@@ -12,6 +12,7 @@ source 'https://rubygems.org'
  # #2
  group :development do
    gem 'sqlite3'
+   gem 'letter_opener'
  end
 
  group :development, :test do
