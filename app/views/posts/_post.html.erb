@@ -1,0 +1,13 @@
+<div class="media">
+  <%= render partial: 'votes/voter', locals: { post: post} %>
+  <div class="media-body">
+    <h4>
+      <%= link_to post.title, topic_post_path(post.topic, post) %>
+      <%= render partial: "labels/list", locals: {labels: post.labels } %>
+    </h4>
+    <small>
+      submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %><br>
+      <%= pluralize(post.comments.count, 'comment') %>
+    </small>
+  </div>
+</div>

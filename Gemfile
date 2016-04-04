@@ -19,6 +19,7 @@ source 'https://rubygems.org'
    gem 'rspec-rails', '~> 3.0'
    gem 'shoulda'
    gem 'nyan-cat-formatter'
+   gem 'factory_girl_rails', '~> 4.0'
  end
 
  # Use SCSS for stylesheets
