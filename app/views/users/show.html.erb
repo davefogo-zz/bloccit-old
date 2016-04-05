@@ -11,8 +11,16 @@
       <div class="media-body">
         <h2 class="media-heading"><%= @user.name %></h2>
         <small>
-          <%= pluralize(@user.posts.count, 'post') %>,
-          <%= pluralize(@user.comments.count, 'comment') %>
+          <% if user_has_post_activity?(@user) %>
+            <%= pluralize(@user.posts.count, 'post') %>,<br>
+          <% else %>
+            <%= "#{@user.name} has not submitted any posts yet." %> <br>
+          <% end %>
+          <% if user_has_comment_activity?(@user) %>
+            <%= pluralize(@user.comments.count, 'comment') %><br>
+          <% else %>
+            <%= "#{@user.name} has not submitted any comments yet." %>
+          <% end %>
         </small>
       </div>
     </div>
@@ -21,6 +29,8 @@
 
 <h2>Posts</h2>
 <%= render @user.posts %>
+
+<h2> Favorited Posts </h2>
 
 <h2>Comments</h2>
 <%= render @user.comments %>

@@ -2,9 +2,9 @@ require 'rails_helper'
 require 'random_data'
 
 RSpec.describe Post, type: :model do
-  let (:user) {create (:user)}
-  let(:topic) {create (:topic)}
-  let(:post) {create (:post)}
+  let (:user) {create(:user)}
+  let(:topic) {create(:topic)}
+  let(:post) {create(:post)}
 
   it {is_expected.to have_many(:labelings)}
   it {is_expected.to have_many(:labels).through(:labelings)}
@@ -78,6 +78,21 @@ RSpec.describe Post, type: :model do
           post.votes.create!(value:-1)
           expect(post.rank).to eq(old_rank - 1)
         end
+      end
+    end
+
+    describe "scoping favorites" do
+      before do
+        favorite = Favorite.create(post: post, user: user)
+        not_favorited_post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+      end
+
+      it "returns a list of a users' favorited posts" do
+        expected_post = Post.all
+        e = expected_post.favorited(user)
+        f = Favorite.first
+        favorite_post = f.post
+        expect(e).to eq(favorite_post)
       end
     end
 end
