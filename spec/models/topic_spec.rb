@@ -43,5 +43,17 @@ RSpec.describe Topic, type: :model do
         expect(Topic.visible_to(nil)).to eq([@public_topic])
       end
     end
+
+    describe "public_viewable" do
+      it "returns all public topics" do
+        expect(Topic.public_viewable).to eq([@public_topic])
+      end
+    end
+
+    describe "private_viewable" do
+      it "returns all private topics" do
+        expect(Topic.private_viewable).to eq([@private_topic])
+      end
+    end
   end
 end
